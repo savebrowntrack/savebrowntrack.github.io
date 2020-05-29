@@ -1,5 +1,5 @@
 ///
-/// Hyperspace by HTML5 UP
+/// Story by HTML5 UP
 /// html5up.net | @ajlkn
 /// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 ///
@@ -14,28 +14,36 @@
 
 	header {
 		p {
-			color: _palette(fg-light);
 			position: relative;
-			margin: 0 0 (_size(element-margin) * 0.75) 0;
+			margin: (_size(element-margin) * -0.325) 0 (_size(element-margin) * 0.75) 0;
+			font-style: italic;
+		}
+
+		h1 + p {
+			font-size: 1.375rem;
 		}
 
 		h2 + p {
-			font-size: 1.25em;
-			margin-top: (_size(element-margin) * -0.5);
-			line-height: 1.5em;
+			font-size: 1.25rem;
 		}
 
 		h3 + p {
-			font-size: 1.1em;
-			margin-top: (_size(element-margin) * -0.4);
-			line-height: 1.5em;
+			font-size: 1.1rem;
 		}
 
 		h4 + p,
 		h5 + p,
 		h6 + p {
-			font-size: 0.9em;
-			margin-top: (_size(element-margin) * -0.3);
-			line-height: 1.5em;
+			font-size: 0.9rem;
 		}
 	}
+
+	@mixin color-section($p: null) {
+		header {
+			p {
+				color: _palette($p, fg-light);
+			}
+		}
+	}
+
+	@include color-section;
