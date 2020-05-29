@@ -1,0 +1,32 @@
+[
+	{
+		"name" : "Angel Rodriguez",
+		"image" : "",
+		"cslogin" : "arodri36",
+		"bio" : "Hello everyone! I'm a Junior from Union City, NJ concentrating in Computer Science! I'm a Diversity & Inclusion advocate, a member of the Mosaic+ community, as well as a returning RPL. I am always open to answer any questions so feel free to contact me! In my free time I like to take pictures, watch bad reality TV shows, get overly competitive over games, and joke around with friends. Hope you all have a great semester, we are here for you!"
+	},
+	{
+		"name" : "Julie Wang",
+		"image" : "",
+		"cslogin" : "jwang73",
+		"bio" : "I sometimes eat pancakes."
+	},
+	{
+		"name" : "Lucy Reyes",
+		"image" : "",
+		"cslogin" : "lreyes1",
+		"bio" : "Hello! I am a junior from Monterrey, Mexico  concentrating in Computer Science. CS15 is my favorite class at Brown, and I hope you will like it as much as I did! In my free time, I love to watch The Office, bake, spend time with my friends, and dance. Welcome to CS15! :) "
+	},
+	{
+		"name" : "Noah Korotzer",
+		"image" : "",
+		"cslogin" : "nkorotze",
+		"bio" : "I'm a senior from LA studying electrical engineering with a focus in computer science. In my spare time I like to run as fast as I can in a straight line over and over. Come talk to me about sports, books, dogs, or anything else! (or CS, I guess)"
+	},
+	{
+		"name" : "Taylor Auten",
+		"image" : "",
+		"cslogin" : "wauten",
+		"bio" : "Hi!! I'm a senior from Connecticut who switched my concentration from Political Science to Computer Science after taking CS15. You can typically find me cooking, looking for an excuse to get a Lime scooter, or performing marriage ceremonies. Always feel free to reach out, and enjoy CS15! (he/him/his)"
+	}
+]
