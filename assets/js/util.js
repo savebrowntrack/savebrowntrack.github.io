@@ -433,7 +433,7 @@
 		// Events.
 			$this
 				.on('submit', function() {
-
+					Console.log('hi');
 					$this.find('input[type=text],input[type=password],textarea')
 						.each(function(event) {
 
