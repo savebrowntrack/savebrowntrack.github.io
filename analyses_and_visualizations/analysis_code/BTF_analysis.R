@@ -138,6 +138,88 @@ ggsave("figures/costs_per_roster.png",
 
 
 
+# * * 2.1.1 IG graph (different color scheme) -----------------------------
+
+## Create a different color scheme for the team instagram
+
+## Plot Cost per athlete for each varsity team (Men)
+cost_perAthlete.Men %>% 
+  # Bind the row created above
+  bind_rows(cost_perUnique) %>% 
+  # Rename the original Track/XC label as Track/XC per roster spot
+  mutate(`Varsity Sport` = fct_recode(`Varsity Sport`,
+                                      "Track/XC (per roster spot)" = "Track/XC")) %>% 
+  # Reorder Sport by cost per athlete (reorders the labels on the axis)
+  mutate(`Varsity Sport` = fct_reorder(`Varsity Sport`, `Cost per Athlete`)) %>% 
+  # Assemble plot
+  # Assign fill to Track/XC
+  ggplot(aes(x = `Varsity Sport`, y = `Cost per Athlete`, fill = is.track)) +
+  geom_col(color = "black",
+           width = 0.75) +
+  geom_text(aes(label = dollar(`Cost per Athlete`, 
+                               # Divide by 1,000 to report in thousands
+                               scale = 1/1000,
+                               # Round to the tenths place
+                               accuracy = .1,
+                               # Add suffix
+                               suffix = "K")),
+            color = "white",
+            size = 4.5,
+            nudge_y = 2000,
+            hjust = 0) +
+  annotate(y = 69000,
+           x = "Track/XC (per unique athlete)",
+           geom = "text",
+           color = "white",
+           hjust = 0,
+           vjust = 1,
+           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+  #scale_fill_manual(values = c("saddlebrown", "red")) +
+  scale_fill_manual(values = c("gray50", "red")) +
+  scale_y_continuous(limits = c(0, 100000),
+                     labels = dollar) +
+  coord_flip() +
+  ggtitle("Operating cost per roster spot for Men's varsity teams",
+          subtitle = "Based on Brown University's 2019 athletic season") +
+  labs(y = "Cost per roster spot") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 14,
+                                   margin = margin(t = 0.5, unit = "cm"),
+                                   color = "white"),
+        axis.text.y = element_text(size = 14,
+                                   color = "white"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size = 14,
+                                    margin = margin(t = 0.5, unit = "cm"),
+                                    color = "white"),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        plot.subtitle = element_text(size = 13,
+                                     face = "italic"),
+        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray22"),
+        text = element_text(color = "white",
+                            #face = "bold",
+                            family= "Helvetica"),
+        plot.background = element_rect(fill = "black"),
+        legend.position = "none")
+
+
+## Export as pdf
+ggsave("figures/costs_per_roster.IG.pdf",
+       height = 6,
+       width = 9,
+       dpi = 320)
+
+## Also export as png
+ggsave("figures/costs_per_roster.IG.png",
+       height = 6,
+       width = 9,
+       dpi = 640)
+
+
 # * 2.2 Total operating costs per team ------------------------------------
 
 
@@ -191,6 +273,81 @@ ggsave("figures/total_costs_per_team.pdf",
 
 ## Also export as png
 ggsave("figures/total_costs_per_team.png",
+       height = 6,
+       width = 8.5,
+       dpi = 640)
+
+
+
+# * * 2.1.2 IG graph ------------------------------------------------------
+
+
+## Plot Cost per athlete for each varsity team (Men)
+cost_perAthlete.Men %>% 
+  # Reorder Sport by cost per athlete (reorders the labels on the axis)
+  mutate(`Varsity Sport` = fct_reorder(`Varsity Sport`, `Operating Costs`)) %>% 
+  # Assemble plot
+  # Assign fill to Track/XC
+  ggplot(aes(x = `Varsity Sport`, y = `Operating Costs`, fill = is.track)) +
+  geom_col(color = "black",
+           width = 0.75) +
+  geom_text(aes(label = dollar(`Operating Costs`,
+                               # Divide by 1,000 to report in thousands
+                               scale = 1/1000,
+                               # Round to the tenths place
+                               accuracy = .1,
+                               # Add suffix
+                               suffix = "K")),
+            color = "white",
+            size = 4.5,
+            nudge_y = 100000,
+            hjust = 0) +
+  annotate(y = 3000000,
+           x = "Golf",
+           geom = "text",
+           color = "white",
+           hjust = 0,
+           vjust = 1,
+           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+  scale_fill_manual(values = c("gray50", "red")) +
+  scale_y_continuous(limits = c(0, 4500000),
+                     labels = dollar) +
+  coord_flip() +
+  ggtitle("Total operating cost for Men's varsity teams",
+          subtitle = "Based on Brown University's 2019 athletic season") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 14,
+                                   margin = margin(t = 0.5, unit = "cm"),
+                                   color = "white"),
+        axis.text.y = element_text(size = 14,
+                                   color = "white"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size = 14,
+                                    margin = margin(t = 0.5, unit = "cm"),
+                                    color = "white"),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        plot.subtitle = element_text(size = 13,
+                                     face = "italic"),
+        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray22"),
+        text = element_text(color = "white",
+                            #face = "bold",
+                            family= "Helvetica"),
+        plot.background = element_rect(fill = "black"),
+        legend.position = "none")
+
+
+## Export as pdf
+ggsave("figures/total_costs_per_team.IG.pdf",
+       height = 6,
+       width = 8.5,
+       dpi = 320)
+
+## Also export as png
+ggsave("figures/total_costs_per_team.IG.png",
        height = 6,
        width = 8.5,
        dpi = 640)
