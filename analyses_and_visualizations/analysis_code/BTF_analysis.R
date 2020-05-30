@@ -151,26 +151,46 @@ cost_perAthlete.Men %>%
   geom_col(color = "black",
            width = 0.75) +
   geom_text(aes(label = dollar(round(`Operating Costs`, 0))),
-            size = 5,
+            size = 4.5,
             nudge_y = 100000,
             hjust = 0) +
+  annotate(y = 3000000,
+           x = "Golf",
+           geom = "text",
+           hjust = 0,
+           vjust = 1,
+           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
   scale_fill_manual(values = c("saddlebrown", "red")) +
   scale_y_continuous(limits = c(0, 4500000),
                      labels = dollar) +
   coord_flip() +
   ggtitle("Total operating cost for Men's varsity teams",
-          subtitle = "Based on the 2019 season") +
+          subtitle = "Based on Brown University's 2019 athletic season") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm")),
         axis.text.y = element_text(size = 14,
                                    color = "black"),
         axis.title.y = element_blank(),
-        axis.title.x = element_text(size = 16,
+        axis.title.x = element_text(size = 14,
                                     margin = margin(t = 0.5, unit = "cm")),
-        plot.title = element_text(size = 18),
-        plot.subtitle = element_text(size = 14),
-        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        plot.title = element_text(size = 16),
+        plot.subtitle = element_text(size = 13,
+                                     face = "italic"),
+        plot.margin = margin(0.5, 0.5, 0.5, r = 0.5, unit = "cm"),
         panel.grid.minor = element_blank(),
         panel.grid.major.y = element_blank(),
         legend.position = "none")
+
+
+## Export as pdf
+ggsave("figures/total_costs_per_team.pdf",
+       height = 6,
+       width = 8.5,
+       dpi = 320)
+
+## Also export as png
+ggsave("figures/total_costs_per_team.png",
+       height = 6,
+       width = 8.5,
+       dpi = 640)
