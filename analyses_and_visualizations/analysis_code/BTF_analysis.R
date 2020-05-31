@@ -419,7 +419,7 @@ youth_sports %>%
   scale_y_continuous(labels = dollar,
                      limits = c(0,3000)) +
   coord_flip() +
-  ggtitle("Average annual family spending per child for\nyouth sports (1-18 years old)") +
+  ggtitle("Average annual family spending per child for\nyouth sports (1-18 years old) in the U.S.") +
   labs(y = "Total cost per child") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
@@ -432,6 +432,7 @@ youth_sports %>%
                                     margin = margin(t = 0.5, unit = "cm"),
                                     color = "white"),
         plot.title = element_text(size = 16,
+                                  margin = margin(b = 0.5, unit = "cm"),
                                   face = "bold"),
         plot.subtitle = element_text(size = 13,
                                      face = "italic"),
