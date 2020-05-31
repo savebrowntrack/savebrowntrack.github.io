@@ -60,7 +60,14 @@
 	
 	html{
 		height:100%;
-		background: #ffffff url('images/full_squad_pic.jpg'); no-repeat center bottom fixed;
+		background:
+			/* top, transparent black, faked with gradient */ 
+			linear-gradient(
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0.5)
+			),
+			/* bottom, image */
+			#ffffff url('images/full_squad_pic.jpg'); no-repeat center bottom fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -301,7 +308,12 @@
 			
 			<div id="cspio-description">We are preparing to pass the baton to the next generation. How to help:</br>
 				1. <a href="https://www.change.org/p/brown-university-department-of-athletics-retain-brown-men-s-track-field-s-varsity-status"> Sign our petition</a></br>
-				2. Email <a href="mailto:president@brown.edu">Christina Paxson</a> and <a href="mailto:Jack_Hayes@brown.edu">Jack Hayes</a> with your thoughts</br>
+				2. Email <a href="mailto:president@brown.edu">Christina Paxson (President)</a>,
+				<a href="mailto:Jack_Hayes@brown.edu">Jack Hayes (Athletic Director)</a>,
+				<a href="mailto:smencoff@mdcp.com"> Samuel Mencoff (Chairman of the Board)</a>,
+				<a href="mailto:resslera@sullcrom.com">Alison Ressler(Vice Chancellor)</a>
+				
+				with your respectful thoughts</br>
 				3. Connect below via email or facebook
 			</div>			    				
                         
