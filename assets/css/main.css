@@ -6520,7 +6520,7 @@ input, select, textarea {
 			position: relative;
 			width: 25%;
 		}
-
+    
 			.gallery.style1 article .image {
 				-moz-transition: opacity 0.2s ease-in-out;
 				-webkit-transition: opacity 0.2s ease-in-out;
@@ -6567,7 +6567,7 @@ input, select, textarea {
 				background-color: rgba(0, 0, 0, 0.5);
 				opacity: 0;
 				padding: 2rem;
-				z-index: 1;
+				z-index: 0;
 				font-size: 0.8rem;
 			}
 
