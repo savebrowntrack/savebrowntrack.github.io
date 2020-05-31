@@ -33,11 +33,20 @@ library(scales)
 
 # * 1.2 Read in data ------------------------------------------------------
 
-## Operating cost data for 2019
-cost_raw <- read_csv("data_raw/varsity_operating_costs_2019.csv") %>% 
+## Operating cost data for Brown U. 2019 Varsity teams
+cost_raw <- read_csv("data/data_raw/financial/varsity_operating_costs_2019.csv") %>% 
   mutate(is.track = if_else(`Varsity Sport` == "Track/XC", "TRUE", "FALSE"))
 
 cost_raw$`Varsity Sport` %>% unique()
+
+
+## Family costs data for youth sports (1-18)
+## Data taken from Aspen Institute/Utah State University 2019 National Youth Sport Survey
+youth_sports <- read_csv("data/data_raw/financial/youth_sport_costs.csv") %>% 
+  mutate(is.track = if_else(Sport == "Track and Field" | Sport == "Cross Country", "TRUE", "FALSE"))
+
+
+
 
 # * 1.3 Calculate per capita operating costs ------------------------------
 
@@ -55,7 +64,7 @@ cost_perAthlete.Women <- cost_perAthlete %>%
   filter(Gender == "Women")
 
 
-# 2. Data visualizations --------------------------------------------------
+# 2. Brown University varsity operating costs --------------------------------------------------
 
 
 # * 2.1 Cost per athlete for each team ------------------------------------
@@ -291,17 +300,22 @@ cost_perAthlete.Men %>%
   ggplot(aes(x = `Varsity Sport`, y = `Operating Costs`, fill = is.track)) +
   geom_col(color = "black",
            width = 0.75) +
-  geom_text(aes(label = dollar(`Operating Costs`,
-                               # Divide by 1,000 to report in thousands
-                               scale = 1/1000,
-                               # Round to the tenths place
-                               accuracy = .1,
-                               # Add suffix
-                               suffix = "K")),
+  geom_text(aes(label = label_number_si(`Operating Costs`)),
             color = "white",
             size = 4.5,
             nudge_y = 100000,
             hjust = 0) +
+  # geom_text(aes(label = dollar(`Operating Costs`,
+  #                              # Divide by 1,000 to report in thousands
+  #                              scale = 1/1000,
+  #                              # Round to the tenths place
+  #                              accuracy = .1,
+  #                              # Add suffix
+  #                              suffix = "K")),
+  #           color = "white",
+  #           size = 4.5,
+  #           nudge_y = 100000,
+  #           hjust = 0) +
   annotate(y = 3000000,
            x = "Golf",
            geom = "text",
@@ -339,7 +353,7 @@ cost_perAthlete.Men %>%
         plot.background = element_rect(fill = "black"),
         legend.position = "none")
 
-
+?label_number_si()
 ## Export as pdf
 ggsave("figures/total_costs_per_team.IG.pdf",
        height = 6,
@@ -351,3 +365,73 @@ ggsave("figures/total_costs_per_team.IG.png",
        height = 6,
        width = 8.5,
        dpi = 640)
+
+
+
+# 3. Youth sports costs ---------------------------------------------------
+
+
+## Data taken from Aspen Institute/Utah State University 2019 National Youth Sport Survey
+
+
+# * 3.1 Average cost per sport --------------------------------------------
+
+## Average annual family spending on one child (1-18 years of age) per sport
+
+youth_sports %>% 
+  # Reorder axis by Total Cost
+  mutate(Sport = fct_reorder(Sport, `Total Costs`)) %>% 
+  # Assign fill to Track/XC
+  ggplot(aes(x = Sport, y = `Total Costs`, fill = is.track)) +
+  geom_col(color = "black",
+           width = 0.75) +
+  geom_text(aes(label = dollar(`Total Costs`)),
+            color = "white",
+            size = 4.5,
+            nudge_y = 100,
+            hjust = 0) +
+  annotate(y = 1100,
+           x = "Skateboarding",
+           geom = "text",
+           color = "white",
+           hjust = 0,
+           vjust = 1,
+           size = 3.5,
+           label = "Data taken from the Aspen Institute/Utah State\nUniversity 2019 National Youth Sport Survey\nhttps://www.aspenprojectplay.org/national-youth-sport-survey/1") +
+  scale_fill_manual(values = c("gray50", "red")) +
+  scale_y_continuous(labels = dollar,
+                     limits = c(0,3000)) +
+  coord_flip() +
+  ggtitle("Average annual family spending on one child\nfor youth sports (1-18 years old)") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 14,
+                                   margin = margin(t = 0.5, unit = "cm"),
+                                   color = "white"),
+        axis.text.y = element_text(size = 14,
+                                   color = "white"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size = 14,
+                                    margin = margin(t = 0.5, unit = "cm"),
+                                    color = "white"),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        plot.subtitle = element_text(size = 13,
+                                     face = "italic"),
+        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray22"),
+        text = element_text(color = "white",
+                            #face = "bold",
+                            family= "Helvetica"),
+        plot.background = element_rect(fill = "black"),
+        legend.position = "none")
+
+
+## Also export as png
+ggsave("figures/youthSport_totalCosts.IG.png",
+       height = 6.5,
+       width = 8.5,
+       dpi = 640)
+
+
