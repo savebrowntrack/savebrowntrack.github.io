@@ -115,7 +115,7 @@ cost_perAthlete.Men %>%
                      labels = dollar) +
   coord_flip() +
   ggtitle("Operating cost per roster spot for Men's varsity teams",
-          subtitle = "Based on Brown University's 2019 athletic season") +
+          subtitle = "Based on Brown University's 2018-2019 academic year") +
   labs(y = "Cost per roster spot") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
@@ -134,13 +134,13 @@ cost_perAthlete.Men %>%
         legend.position = "none")
   
 ## Export as pdf
-ggsave("figures/costs_per_roster.pdf",
+ggsave("figures/costs_per_athlete.pdf",
        height = 6,
        width = 8.5,
        dpi = 320)
 
 ## Also export as png
-ggsave("figures/costs_per_roster.png",
+ggsave("figures/costs_per_athlete.png",
        height = 6,
        width = 8.5,
        dpi = 640)
@@ -188,9 +188,9 @@ cost_perAthlete.Men %>%
   scale_y_continuous(limits = c(0, 100000),
                      labels = dollar) +
   coord_flip() +
-  ggtitle("Operating cost per roster spot for Men's varsity teams",
-          subtitle = "Based on Brown University's 2019 athletic season") +
-  labs(y = "Cost per roster spot") +
+  ggtitle("Operating cost per athlete for Men's varsity teams",
+          subtitle = "Based on Brown University's 2018-2019 academic year") +
+  labs(y = "Cost per athlete") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
@@ -217,13 +217,13 @@ cost_perAthlete.Men %>%
 
 
 ## Export as pdf
-ggsave("figures/costs_per_roster.IG.pdf",
+ggsave("figures/costs_per_athlete.IG.pdf",
        height = 6,
        width = 9,
        dpi = 320)
 
 ## Also export as png
-ggsave("figures/costs_per_roster.IG.png",
+ggsave("figures/costs_per_athlete.IG.png",
        height = 6,
        width = 9,
        dpi = 640)
@@ -256,7 +256,7 @@ cost_perAthlete.Men %>%
                      labels = dollar) +
   coord_flip() +
   ggtitle("Total operating cost for Men's varsity teams",
-          subtitle = "Based on Brown University's 2019 athletic season") +
+          subtitle = "Based on Brown University's 2018-2019 academic year") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm")),
@@ -290,17 +290,34 @@ ggsave("figures/total_costs_per_team.png",
 
 # * * 2.1.2 IG graph ------------------------------------------------------
 
-
-## Plot Cost per athlete for each varsity team (Men)
-cost_perAthlete.Men %>% 
+## Reorder factors for graphing and add abbreviation to be displayed on graph
+cost_withLabels <- cost_perAthlete.Men %>% 
   # Reorder Sport by cost per athlete (reorders the labels on the axis)
   mutate(`Varsity Sport` = fct_reorder(`Varsity Sport`, `Operating Costs`)) %>% 
+  # Create new column of operating cost, but in dollar format
+  mutate(cost_dollar = dollar(`Operating Costs`, accuracy = 100)) %>% 
+  # Separate dollar format column into 3 parts based on thousands place
+  separate(cost_dollar, 
+           into = c("a", "b", "c"), 
+           sep = ",",
+           remove = FALSE) %>% 
+  # Separate the middle part, which will be the value after the decimal place (whether reported in thousands or millions) 
+  separate(b, into = c("post_decimal", "other"), sep = 1) %>%
+  # if there is data in the last column, c, that means that the cost value is in the millions:
+  # assign K vs M suffix as such
+  mutate(suffix = if_else(c %>% is.na() == TRUE, "K", "M")) %>% 
+  # unite the decorated columns to create the label
+  unite(a, post_decimal, col = "front_end", sep = ".") %>% 
+  unite(front_end, suffix, col = "dollar_abbreviation", sep = "")
+  
+## Plot total operating cost for each varsity team (Men)
+cost_withLabels %>% 
   # Assemble plot
   # Assign fill to Track/XC
   ggplot(aes(x = `Varsity Sport`, y = `Operating Costs`, fill = is.track)) +
   geom_col(color = "black",
            width = 0.75) +
-  geom_text(aes(label = label_number_si(`Operating Costs`)),
+  geom_text(aes(label = dollar_abbreviation),
             color = "white",
             size = 4.5,
             nudge_y = 100000,
@@ -324,11 +341,11 @@ cost_perAthlete.Men %>%
            vjust = 1,
            label = "Data taken from the 2019 \n'Equity in Athletics' report") +
   scale_fill_manual(values = c("gray50", "red")) +
-  scale_y_continuous(limits = c(0, 4500000),
+  scale_y_continuous(limits = c(0, 4000000),
                      labels = dollar) +
   coord_flip() +
   ggtitle("Total operating cost for Men's varsity teams",
-          subtitle = "Based on Brown University's 2019 athletic season") +
+          subtitle = "Based on Brown University's 2018-2019 academic year") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
@@ -343,7 +360,7 @@ cost_perAthlete.Men %>%
                                   face = "bold"),
         plot.subtitle = element_text(size = 13,
                                      face = "italic"),
-        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        plot.margin = margin(0.5, 0.5, 0.5, r = 1, unit = "cm"),
         panel.grid.minor = element_blank(),
         panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_line(color = "gray22"),
@@ -353,7 +370,7 @@ cost_perAthlete.Men %>%
         plot.background = element_rect(fill = "black"),
         legend.position = "none")
 
-?label_number_si()
+
 ## Export as pdf
 ggsave("figures/total_costs_per_team.IG.pdf",
        height = 6,
@@ -402,7 +419,8 @@ youth_sports %>%
   scale_y_continuous(labels = dollar,
                      limits = c(0,3000)) +
   coord_flip() +
-  ggtitle("Average annual family spending on one child\nfor youth sports (1-18 years old)") +
+  ggtitle("Average annual family spending per child for\nyouth sports (1-18 years old)") +
+  labs(y = "Total cost per child") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
