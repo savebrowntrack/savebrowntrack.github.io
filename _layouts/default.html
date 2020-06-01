@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"></html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <!-- TODO temp hack until we have a favicon.ico -->
+    <link rel="shortcut icon" href="">
+	<noscript>
+		<link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-168107944-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-168107944-1');
+	</script>
+  </head>
+  <body class="is-preload">
+	{% if page.is_main_content %}
+		<div class="navbar">
+			<a href="#home" class="smooth-scroll-middle">Home</a>
+			<a href="#statement" class="smooth-scroll-middle">Statement</a>
+			<a href="#spotlight" class="smooth-scroll-middle">Spotlight</a>
+			<a href="#analysis" class="smooth-scroll-middle">Analysis</a>
+			<a href="#fundraising" class="smooth-scroll-middle">Fundraising</a>
+			<a href="#testimonials" class="smooth-scroll-middle">Testimonials</a>
+			<a href="#contact" class="smooth-scroll-middle">Contact Us</a>
+		</div>
+		
+		<div class="main-content">
+	{% endif %}
+		<!-- Wrapper -->
+		<div id="wrapper" class="divided">
+            
+            {{ content }}
+            
+            <!-- Footer -->
+			<footer class="wrapper style1 align-center">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+						<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<p>Brown University Track and Field. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+				</div>
+			</footer>
+		</div>
+	{% if page.is_main_content %}
+		</div>
+	{% endif %}
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+  </body>
+</html>
