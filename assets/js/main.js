@@ -99,7 +99,7 @@
 		$('.smooth-scroll').scrolly();
 		$('.smooth-scroll-middle').scrolly({ anchor: 'middle' });
 		$('.smooth-scroll-top').scrolly({ anchor: 'top'});
-		$('.smooth-scroll-top-navbar-offset').scrolly({ anchor: 'top', offset: 60})
+		$('.smooth-scroll-top-navbar-offset').scrolly({ anchor: 'top', offset: window.screen.height*.11})
 
 	// Wrapper.
 		$wrapper.children()
