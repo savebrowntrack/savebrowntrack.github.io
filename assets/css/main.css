@@ -85,7 +85,7 @@
 .landing-darken {
 	height: 100%;
 	width: 100%;
-	background-color: rgba(27, 3, 3, 0.55);
+	background-color: rgba(255, 255, 255, 0.6);
 	position: fixed;
 	z-index: 5;
 }
@@ -101,7 +101,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-	background-color: rgba(255, 255, 255, 0.9);
 }
 
 .white-bg {
