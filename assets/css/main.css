@@ -12,13 +12,13 @@
     top: 0; /* Position the navbar at the top of the page */
     position: fixed; /* Set the navbar to fixed position */
     width: 100%; /* Full width */
-    z-index: 1; /* stay on top layer */
+    z-index: 2; /* stay on top layer */
 }
 
 /* Header Message (#falsestart) */
 .header-message {
     z-index: 1;
-    background-color: red;
+    background-color: #de5972;
     display: flex;
     justify-content: space-between;
     position: fixed; /* Set the header to fixed position */
@@ -27,7 +27,7 @@
     padding-left: 2vw;
     padding-right: 2vw;
     padding-top: 0.5vh;
-    opacity: 0.7;
+    opacity: 1;
 }
 
     /* #falsestart items */
@@ -66,8 +66,8 @@
 
 /* Main content */
 .main-content {
-	z-index: 2;
-	margin-top: 12vh;
+	z-index: 1;
+	border-top: 12vh;
     overflow-y: hidden;
 }
 
