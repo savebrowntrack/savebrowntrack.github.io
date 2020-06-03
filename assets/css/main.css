@@ -89,8 +89,15 @@
 	width: auto;
 	height: auto;
 	overflow: hidden;
+	position: fixed;
 	z-index: -100;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
 
+.white-bg {
+	background-color: white;
 }
 
 /* kinda hacky to get title to start below navbar */
