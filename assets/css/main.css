@@ -28,6 +28,8 @@
     padding-right: 2vw;
     padding-top: 0.5vh;
     opacity: 1;
+    max-height: 4vh;
+    overflow: hidden;
 }
 
     /* #falsestart items */
@@ -46,6 +48,7 @@
   overflow: hidden;
   background-color: #333;
   margin-top: 4vh;
+  max-height: 10vh;
 }
 
     /* Links inside the navbar */
