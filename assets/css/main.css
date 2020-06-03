@@ -7,38 +7,67 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+/* Header (header message, navbar) */
+.header {
+    top: 0; /* Position the navbar at the top of the page */
+    position: fixed; /* Set the navbar to fixed position */
+    width: 100%; /* Full width */
+    z-index: 1; /* stay on top layer */
+}
+
+/* Header Message (#falsestart) */
+.header-message {
+    z-index: 1;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    position: fixed; /* Set the header to fixed position */
+    width: 100%;
+    height: 4vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 0.5vh;
+}
+
+    /* #falsestart items */
+    .header-message .header-message-item {
+        width: 25vw;
+        text-align: center;
+    }
+
+        /* falsestart links */
+        .header-message .header-message-item a {
+
+        }
+
 /* The navigation bar */
 .navbar {
   overflow: hidden;
   background-color: #333;
-  z-index: 1; /* stay on top layer */
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-  height: 10vh;
-  padding: 0 2vw;
+  margin-top: 4vh;
 }
 
-/* Links inside the navbar */
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 3vh 3vw;
-  text-decoration: none;
-}
+    /* Links inside the navbar */
+    .navbar a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 3vh 3vw;
+      text-decoration: none;
+    }
 
-/* Change background on mouse-over */
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
+    /* Change background on mouse-over */
+    .navbar a:hover {
+      background: #ddd;
+      color: black;
+    }
 
 /* Main content */
 .main-content {
 	z-index: 2;
-	margin-top: 60px;
+	margin-top: 12vh;
+    overflow-y: hidden;
 }
 
 html, body, div, span, applet, object,
@@ -6520,7 +6549,7 @@ input, select, textarea {
 			position: relative;
 			width: 25%;
 		}
-    
+
 			.gallery.style1 article .image {
 				-moz-transition: opacity 0.2s ease-in-out;
 				-webkit-transition: opacity 0.2s ease-in-out;
