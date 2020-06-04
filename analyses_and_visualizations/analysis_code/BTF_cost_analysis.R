@@ -127,7 +127,7 @@ cost_perAthlete.Men %>%
   scale_y_continuous(limits = c(0, 100000),
                      labels = dollar) +
   coord_flip() +
-  ggtitle("Spending per athlete for Men's varsity teams",
+  ggtitle("Brown's spending per athlete on Men's varsity teams",
           subtitle = "Based on Brown University's 2018-2019 academic year") +
   labs(y = "Spending per athlete") +
   theme_minimal() + 
@@ -299,7 +299,7 @@ annotate(y = 2200000,
   scale_y_continuous(limits = c(0, 4000000),
                      labels = dollar) +
   coord_flip() +
-  ggtitle("Total spending on Men's varsity teams",
+  ggtitle("Brown's total spending on Men's varsity teams",
           subtitle = "Based on Brown University's 2018-2019 academic year") +
   labs(y = "Total spending") +
   theme_minimal() + 
