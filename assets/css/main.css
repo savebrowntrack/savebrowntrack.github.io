@@ -90,6 +90,14 @@
 	z-index: 5;
 }
 
+h1.landing-headline {
+	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+}
+
+p.landing-text {
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
 .landing-vid video {
 	min-width: 100%;
 	min-height: 100%;
