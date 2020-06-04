@@ -1,7 +1,6 @@
 # [savebrowntrack.github.io](https://savebrowntrack.github.io)
 
-This skeleton has been taken from the CS15 website, www.cs.brown.edu/courses/cs015/
-I thought it would be easiest to take from this and re-vamp it.
+This is the repository that hosts savebrowntrack.org. Visit that website to learn all of the reasons that Brown University's decision to cut the men's Track & Field team is part of a larger system of racial and gender injustice.
 
 Brown: #532F19
 Light Green: #7FBAA8
