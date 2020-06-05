@@ -102,6 +102,7 @@ cost_perAthlete.Men %>%
   # Assign fill to Track/XC
   ggplot(aes(x = `Varsity Sport`, y = `Cost per Athlete`, fill = is.track)) +
   geom_col(color = "black",
+           size = 0.35,
            width = 0.75) +
   geom_text(aes(label = dollar(`Cost per Athlete`, 
                                # Divide by 1,000 to report in thousands
@@ -114,21 +115,21 @@ cost_perAthlete.Men %>%
             size = 4.5,
             nudge_y = 2000,
             hjust = 0) +
-  annotate(y = 69000,
+  annotate(y = 55000,
            x = "Track/XC (per unique athlete)",
            geom = "text",
            color = "black",
            hjust = 0,
            vjust = 1,
-           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+           label = "Data taken from the Brown University\n2019 Equity in Athletics report") +
   #scale_fill_manual(values = c("saddlebrown", "red")) +
   scale_fill_manual(values = c("gray75", "red")) +
   scale_y_continuous(limits = c(0, 100000),
                      labels = dollar) +
   coord_flip() +
-  ggtitle("Operating cost per athlete for Men's varsity teams",
+  ggtitle("Brown's spending per athlete on Men's varsity teams",
           subtitle = "Based on Brown University's 2018-2019 academic year") +
-  labs(y = "Cost per athlete") +
+  labs(y = "Spending per athlete") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
@@ -190,13 +191,13 @@ cost_perAthlete.Men %>%
             size = 4.5,
             nudge_y = 2000,
             hjust = 0) +
-  annotate(y = 69000,
+  annotate(y = 55000,
            x = "Track/XC (per unique athlete)",
            geom = "text",
            color = "white",
            hjust = 0,
            vjust = 1,
-           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+           label = "Data taken from the Brown University\n2019 Equity in Athletics report") +
   #scale_fill_manual(values = c("saddlebrown", "red")) +
   scale_fill_manual(values = c("gray50", "red")) +
   scale_y_continuous(limits = c(0, 100000),
@@ -269,6 +270,7 @@ cost_withLabels %>%
   # Assign fill to Track/XC
   ggplot(aes(x = `Varsity Sport`, y = `Operating Costs`, fill = is.track)) +
   geom_col(color = "black",
+           size = 0.35,
            width = 0.75) +
   geom_text(aes(label = dollar_abbreviation),
             color = "black",
@@ -286,19 +288,20 @@ cost_withLabels %>%
   #           size = 4.5,
   #           nudge_y = 100000,
   #           hjust = 0) +
-annotate(y = 3000000,
+annotate(y = 2200000,
          x = "Golf",
          geom = "text",
          color = "black",
          hjust = 0,
          vjust = 1,
-         label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+         label = "Data taken from the Brown University\n2019 Equity in Athletics report") +
   scale_fill_manual(values = c("gray75", "red")) +
   scale_y_continuous(limits = c(0, 4000000),
                      labels = dollar) +
   coord_flip() +
-  ggtitle("Total operating cost for Men's varsity teams",
+  ggtitle("Brown's total spending on Men's varsity teams",
           subtitle = "Based on Brown University's 2018-2019 academic year") +
+  labs(y = "Total spending") +
   theme_minimal() + 
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
@@ -360,13 +363,13 @@ cost_withLabels %>%
   #           size = 4.5,
   #           nudge_y = 100000,
   #           hjust = 0) +
-  annotate(y = 3000000,
-           x = "Golf",
-           geom = "text",
-           color = "white",
-           hjust = 0,
-           vjust = 1,
-           label = "Data taken from the 2019 \n'Equity in Athletics' report") +
+annotate(y = 2200000,
+         x = "Golf",
+         geom = "text",
+         color = "white",
+         hjust = 0,
+         vjust = 1,
+         label = "Data taken from the Brown University\n2019 Equity in Athletics report") +
   scale_fill_manual(values = c("gray50", "red")) +
   scale_y_continuous(limits = c(0, 4000000),
                      labels = dollar) +
@@ -427,20 +430,23 @@ youth_sports %>%
   # Assign fill to Track/XC
   ggplot(aes(x = Sport, y = `Total Costs`, fill = is.track)) +
   geom_col(color = "black",
-           width = 0.75) +
+           size = 0.25,
+           width = 0.7) +
   geom_text(aes(label = dollar(`Total Costs`)),
             color = "black",
             size = 4.5,
             nudge_y = 100,
             hjust = 0) +
-  annotate(y = 1100,
-           x = "Skateboarding",
+  annotate(y = 1200,
+           x = "Flag Football",
            geom = "text",
            color = "black",
            hjust = 0,
            vjust = 1,
-           size = 3.5,
-           label = "Data taken from the Aspen Institute/Utah State\nUniversity 2019 National Youth Sport Survey\nhttps://www.aspenprojectplay.org/national-youth-sport-survey/1") +
+           size = 3.8,
+           label = "Data taken from the Aspen Institute/Utah State\nUniversity 2019 National Youth Sport Survey") +
+           #label = "Data taken from the Aspen Institute/Utah State\nUniversity 2019 National Youth Sport Survey\nhttps://www.aspenprojectplay.org/national-youth-sport-survey/1") +
+  
   scale_fill_manual(values = c("gray75", "red")) +
   scale_y_continuous(labels = dollar,
                      limits = c(0,3000)) +
@@ -451,18 +457,19 @@ youth_sports %>%
   theme(axis.text.x = element_text(size = 14,
                                    margin = margin(t = 0.5, unit = "cm"),
                                    color = "black"),
-        axis.text.y = element_text(size = 14,
+        axis.text.y = element_text(size = 12,
                                    color = "black"),
         axis.title.y = element_blank(),
         axis.title.x = element_text(size = 14,
                                     margin = margin(t = 0.5, unit = "cm"),
                                     color = "black"),
-        plot.title = element_text(size = 16,
+        plot.title = element_text(size = 15,
                                   #margin = margin(b = 0.5, unit = "cm"),
                                   face = "bold"),
         plot.subtitle = element_text(size = 13,
                                      face = "italic"),
-        plot.margin = margin(0.5, 0.5, 0.5, r = 0.75, unit = "cm"),
+        plot.margin = margin(t = 0.1, 0.5, b = 0.1, r = 0.75, unit = "cm"),
+        #plot.margin = margin(t = 0.1, 1.5, b = 0.1, r = 1.5, unit = "cm"),
         panel.grid.minor = element_blank(),
         panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_line(color = "gray90"),
@@ -475,8 +482,8 @@ youth_sports %>%
 
 ## Also export as png
 ggsave("figures/financial/youthSport_totalCosts.webpage.png",
-       height = 7,
-       width = 8.5,
+       height = 6,
+       width = 8,
        dpi = 640)
 
 # * * 3.1.2 IG graph ------------------------------------------------------
