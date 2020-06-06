@@ -81,7 +81,7 @@ ncaa_div_pivot <- ncaa_div_sep %>%
                values_to = "Number_People")
 
 
-# * 2.3 Filter data for proper categories ---------------------------------
+# * 2.3 Filter data for D1 athletes only ---------------------------------
 
 ## Filter data frame to only include Division 1, 
 ## and only Athletes (rather than coaches, assistant coaches)
@@ -93,3 +93,14 @@ ncaa_div_filt <- ncaa_div_pivot %>%
          `Title/Position` == "Student-Athlete")
 
 
+
+# * 2.4 Calculate percentages  --------------------------------------------
+
+asdf <- ncaa_div_filt %>% 
+  filter(Gender == "Male",
+         Year == "2019") %>% 
+  group_by(Division, Sport, Gender, `Race/Ethnicity`, Year) %>% 
+  summarise(Total_Athletes = sum(Number_People, na.rm = TRUE))
+
+
+asdf$Sport %>% unique()
