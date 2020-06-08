@@ -1,10 +1,15 @@
 <!doctype html>
 <html lang="en">
 
-</html>
-<html>
-
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PVZJL87');</script>
+    <!-- End Google Tag Manager -->
+
     <title>{{ page.title }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -13,72 +18,10 @@
     <link rel="shortcut icon" href="">
     <noscript>
         <link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168107944-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-168107944-1');
-    </script>
 </head>
 
 <body class="is-preload">
-    {% if page.is_main_content %}
-    <div class="header">
-        <div class="header-message">
-            <div class="header-message-item">
-                <a href="/screens/analysis.html">#falsestart</a> for excellence
-            </div>
-            <div class="header-message-item">
-                <a href="/screens/analysis.html">#falsestart</a> for diversity
-            </div>
-            <div class="header-message-item">
-                <a href="/screens/analysis.html">#falsestart</a> for inclusion
-            </div>
-            <div class="header-message-item">
-                <a href="/screens/analysis.html">#falsestart</a> for progress
-            </div>
-        </div>
-        <div class="navbar">
-            <a href="#home" class="smooth-scroll-top-navbar-offset">Home</a>
-            <a href="#statement" class="smooth-scroll-top-navbar-offset">Mission Statement</a>
-            <a href="#joinus" class="smooth-scroll-top-navbar-offset">Join Us</a>
-            <a href="#spotlight" class="smooth-scroll-top-navbar-offset">Our Voices</a>
-            <!-- <a href="#fundraising" class="smooth-scroll-top-navbar-offset">Fundraising</a> -->
-            <a href="#excellence" class="smooth-scroll-top-navbar-offset">Excellence + Analytics</a>
-            <a href="#contact" class="smooth-scroll-top-navbar-offset">Contact Us</a>
-        </div>
-    </div>
-
-    <div class="main-content">
-        {% endif %}
-        <!-- Wrapper -->
-        <div id="wrapper" class="divided">
-
-            {{ content }}
-
-            <!-- Footer -->
-            <footer class="wrapper style1 align-center white-bg">
-                <div class="inner">
-                    <ul class="icons">
-                        <li><a href="https://twitter.com/savebrowntrack" target="_blank" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="https://www.facebook.com/savebrowntrack" target="_blank" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-                        <li><a href="http://instagram.com/savebrowntrack" target="_blank" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="mailto: savebrownxctf@gmail.com" target="_blank" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
-                    </ul>
-                    <p>Designed and implemented by the friends and family of Brown University Cross Country, Track and Field.</p>
-                </div>
-            </footer>
-        </div>
-        {% if page.is_main_content %}
-    </div>
-    {% endif %}
+    {{ content }}
 
     <!-- Scripts -->
     <script src="/assets/js/jquery.min.js"></script>
