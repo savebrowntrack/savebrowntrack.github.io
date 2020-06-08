@@ -208,8 +208,67 @@ NCAA_Ivy_perc.Male %>%
   scale_y_continuous(limits = c(0,75), 
                      labels = seq(0, 75, by = 25) %>% percent(scale = 1),
                      breaks = seq(0, 75, by = 25)) +
-  scale_fill_manual(values = c("white", "black")) +
+  #scale_fill_manual(values = c("white", "black")) +
+  scale_fill_manual(values = c("gray80", "darkgreen")) +
+  labs(x = "Race/Ethnicity",
+       y = "Percent composition") +
+  ggtitle("Demographic composition of Ivy League athletes compared\nto Division I NCAA-wide averages (Men's teams)",
+          subtitle = "Source: NCAA Demographics Database, 2019") +
+  theme_classic() +
+  theme(axis.text.x = element_text(size = 16,
+                                   margin = margin(t = 0.5, unit = "cm"),
+                                   color = "black"),
+        axis.text.y = element_text(size = 15,
+                                   color = "black"),
+        axis.title.y = element_text(size = 15,
+                                    margin = margin(r = 0.5, unit = "cm"),
+                                    color = "black"),
+        axis.title.x = element_text(size = 15,
+                                    margin = margin(t = 0.5, unit = "cm"),
+                                    color = "black"),
+        plot.title = element_text(size = 16,
+                                  face = "plain"),
+        plot.subtitle = element_text(size = 11,
+                                     margin = margin(b = 0.5, unit = "cm"),
+                                     face = "italic"),
+        plot.margin = margin(0.5, l = 0.75, 0.5, r = 0.75, unit = "cm"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        text = element_text(color = "black",
+                            family= "Helvetica"),
+        plot.background = element_rect(fill = "white"),
+        legend.text = element_text(size = 15),
+        legend.title = element_blank(),
+        legend.position = c(0.75, .85))
+
+## Also export as png
+ggsave("figures/diversity/NCAA_vs_Ivy.png",
+       height = 5,
+       width = 8,
+       dpi = 640) 
+
+
+NCAA_Ivy_perc.Male %>% 
+  ggplot(aes(x = `Race/Ethnicity`, y = Percent_group)) +
+  geom_col(position = position_dodge(width = 0.6),
+           aes(alpha = Conference, fill = `Race/Ethnicity`),
+           width = 0.6,
+           color = "black") +
+  geom_text(aes(label = round(Percent_group, 1) %>% percent(scale = 1),
+                alpha = Conference,
+                y = Percent_group + 7),
+            position = position_dodge(width = 0.6),
+            fontface = "plain",
+            color = "black",
+            size = 5) +
+  scale_y_continuous(limits = c(0,75), 
+                     labels = seq(0, 75, by = 25) %>% percent(scale = 1),
+                     breaks = seq(0, 75, by = 25)) +
+  #scale_fill_manual(values = c("white", "black")) +
   #scale_fill_manual(values = c("white", "green4")) +
+  scale_alpha_manual(values = c(.55, 1)) +
+  scale_fill_manual(values = c("gray80", "darkred", "gray20")) +
+  guides(fill = "none") +
   labs(x = "Race/Ethnicity",
        y = "Percent composition") +
   ggtitle("Demographic composition of Ivy League athletes compared\nto Division I NCAA-wide averages (Men's teams)",
@@ -240,9 +299,3 @@ NCAA_Ivy_perc.Male %>%
         legend.text = element_text(size = 15),
         legend.title = element_blank(),
         legend.position = c(0.75, .85))
-
-## Also export as png
-ggsave("figures/diversity/NCAA_vs_Ivy.png",
-       height = 5,
-       width = 8,
-       dpi = 640) 
